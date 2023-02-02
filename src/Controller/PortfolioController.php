@@ -12,7 +12,7 @@ class PortfolioController extends AbstractController
     public function index(): Response
     {
         return $this->render('portfolio/portfolio.html.twig', [
-            'cv' => '',
+            '' => '',
         ]);
     }
 }

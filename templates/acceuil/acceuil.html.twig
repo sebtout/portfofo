@@ -1,41 +1,22 @@
 {% include "base.html.twig" %}
 {% block body %}
-	<div>
-		<header class=""></header>
-		<section class="first-section">
-			<h2>
-				<a href="{{ path('app_cv') }}">cv</a>
-			</h2>
-		</section>
-		<section class="seconde-section">
-			<h2>
-				<a href="{{ path('app_portfolio') }}">Portfolio</a>
-			</h2>
-		</section>
-	</div>
 	<div class="container">
-		<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-			<div class="col-md-4 d-flex align-items-center">
-				<span class="mb-3 mb-md-0 text-muted">© 2022 Company, Inc</span>
+		<div class="row-12">
+			<header class="text-center">
+				<p>paragraphe test test test</p>
+			</header>
+			<div class="d-flex text-align">
+				<section class="first-section col-6 h-100">
+					<h2 class="text-center">
+						<a href="{{ path('app_cv') }}">cv</a>
+					</h2>
+				</section>
+				<section class="seconde-section col-6 h-100">
+					<h2 class="text-center">
+						<a href="{{ path('app_portfolio') }}">Portfolio</a>
+					</h2>
+				</section>
 			</div>
-
-			<ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-				<li class="">
-					<a class="text-muted" href="#">
-						<i class="bi bi-twitter"></i>
-					</a>
-				</li>
-				<li class="">
-					<a class="text-muted" href="#">
-						<i class="bi bi-github"></i>
-					</a>
-				</li>
-				<li class="">
-					<a class="text-muted" href="#">
-						<i class="bi bi-linkedin"></i>
-					</a>
-				</li>
-			</ul>
-		</footer>
+		</div>
 	</div>
 {% endblock %}
