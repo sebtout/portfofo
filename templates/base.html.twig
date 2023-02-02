@@ -56,7 +56,15 @@
 						</ul>
 					</li>
 				</ul>
-				<a href="{{ path('app_login') }}">Se connecter</a>
+				{# <a href="{{ path('app_login') }}">Se connecter</a> #}
+				{% if app.user %}
+					{{ app.user.mail }}
+					<a href="{{ path('app_logout') }}">
+						Se déconnecter</a>
+				{% else %}
+					<a href="{{ path('app_login') }}">
+						Se connecter</a>
+				{% endif %}
 			</div>
 		</div>
 	</nav>
