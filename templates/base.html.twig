@@ -6,8 +6,9 @@
 			{% block title %}Welcome!
 			{% endblock %}
 		</title>
-		<link
-		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		<meta
+		name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
@@ -35,6 +36,9 @@
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path('app_portfolio') }}">Portfolio</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('app_register') }}">S'enregistrer</a>
+					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
 						<ul class="dropdown-menu">
@@ -56,7 +60,6 @@
 						</ul>
 					</li>
 				</ul>
-				{# <a href="{{ path('app_login') }}">Se connecter</a> #}
 				{% if app.user %}
 					{{ app.user.mail }}
 					<a href="{{ path('app_logout') }}">
