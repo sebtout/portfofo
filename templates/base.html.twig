@@ -39,26 +39,6 @@
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path('app_register') }}">S'enregistrer</a>
 					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
-						<ul class="dropdown-menu">
-							<li>
-								<a class="dropdown-item" href="#">
-									<i class="bi bi-twitter"></i>
-								</a>
-							</li>
-							<li>
-								<a class="dropdown-item" href="#">
-									<i class="bi bi-github"></i>
-								</a>
-							</li>
-							<li>
-								<a class="dropdown-item" href="#">
-									<i class="bi bi-linkedin"></i>
-								</a>
-							</li>
-						</ul>
-					</li>
 				</ul>
 				{% if app.user %}
 					{{ app.user.mail }}
@@ -73,5 +53,8 @@
 	</nav>
 	<body>
 		{% block body %}{% endblock %}
+		<div class="fixed-bottom">
+			{% include "_footer.html.twig" %}
+		</div>
 	</body>
 </html>
