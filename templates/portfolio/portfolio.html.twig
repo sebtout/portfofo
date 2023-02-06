@@ -3,4 +3,9 @@
 	<button class="btn btn-lg btn-primary">
 		<a href="{{ path('new') }}" class="text-white">Send new project</a>
 	</button>
+	<div class="d-flex flex-wrap justify-content-around">
+		{% for project in projects %}
+			{% include "_card.html.twig" %}
+		{% endfor %}
+	</div>
 {% endblock %}

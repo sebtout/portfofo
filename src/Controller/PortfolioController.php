@@ -14,12 +14,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class PortfolioController extends AbstractController
 {
 
-    #[Route('/portfolio', name: 'app_portfolio')]
+    #[Route('/portfolio', name: 'app_portfolio', methods: ['GET', 'POST'])]
     // #[IsGranted('ROLE_CONTRIBUTOR')]
-    public function index(): Response
+    public function index(Request $request, ProjectRepository $projectRepository): Response
     {
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+
+        $projects = $projectRepository->findAll();
         return $this->render('portfolio/portfolio.html.twig', [
-            '' => '',
+            'projects' => $projects,
         ]);
     }
 
