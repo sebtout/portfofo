@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Project;
 use App\Form\ProjectType;
+use App\Repository\ProjectRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,7 +24,7 @@ class PortfolioController extends AbstractController
     }
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request,): Response
+    public function new(Request $request, ProjectRepository $projectRepository): Response
     {
         $project = new Project();
 
@@ -31,11 +32,14 @@ class PortfolioController extends AbstractController
         $form = $this->createForm(ProjectType::class, $project);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
+            $projectRepository->save($project, true);
             // Deal with the submitted data
             // For example : persiste & flush the entity
             // And redirect to a route that display the result
+            return $this->redirectToRoute('app_portfolio', [], Response::HTTP_SEE_OTHER);
         }
+
         // Render the form (best practice)
         return $this->renderForm('portfolio/newfolio.html.twig', [
             'form' => $form,

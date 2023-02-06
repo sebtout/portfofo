@@ -1,1 +1,6 @@
 {% include "base.html.twig" %}
+{% block body %}
+	<button class="btn btn-lg btn-primary">
+		<a href="{{ path('new') }}" class="text-white">Send new project</a>
+	</button>
+{% endblock %}
