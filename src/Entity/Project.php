@@ -21,7 +21,7 @@ class Project
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $link = null;
 
-    #[ORM\ManyToMany(targetEntity: user::class, inversedBy: 'projects')]
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'projects')]
     private Collection $profil;
 
     public function __construct()

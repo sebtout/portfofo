@@ -21,9 +21,13 @@ class PortfolioController extends AbstractController
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
 
+        // $form = $this->createForm(ProjectType::class, $user);
+        // $form->handleRequest($request);
+
         $projects = $projectRepository->findAll();
         return $this->render('portfolio/portfolio.html.twig', [
             'projects' => $projects,
+            'user' => $user,
         ]);
     }
 

@@ -14,7 +14,7 @@ class Project1Type extends AbstractType
         $builder
             ->add('nameproject')
             ->add('link')
-            ->add('profil')
+            // ->add('profil')
         ;
     }
 
