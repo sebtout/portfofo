@@ -53,18 +53,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Experience::class, inversedBy: 'users')]
     private Collection $experience;
 
-    #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'profil')]
-    private Collection $projects;
+    // #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'profil')]
+    // private Collection $projects;
 
     #[ORM\ManyToMany(targetEntity: Formation::class, mappedBy: 'user')]
     private Collection $formations;
+
+    #[ORM\ManyToMany(targetEntity: project::class, inversedBy: 'users')]
+    private Collection $project;
 
     public function __construct()
     {
         $this->certificate = new ArrayCollection();
         $this->experience = new ArrayCollection();
-        $this->projects = new ArrayCollection();
+        // $this->projects = new ArrayCollection();
         $this->formations = new ArrayCollection();
+        $this->project = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -245,32 +249,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Project>
-     */
-    public function getProjects(): Collection
-    {
-        return $this->projects;
-    }
+    // /**
+    //  * @return Collection<int, Project>
+    //  */
+    // public function getProjects(): Collection
+    // {
+    //     return $this->projects;
+    // }
 
-    public function addProject(Project $project): self
-    {
-        if (!$this->projects->contains($project)) {
-            $this->projects->add($project);
-            $project->addProfil($this);
-        }
+    // public function addProject(Project $project): self
+    // {
+    //     if (!$this->projects->contains($project)) {
+    //         $this->projects->add($project);
+    //         $project->addProfil($this);
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function removeProject(Project $project): self
-    {
-        if ($this->projects->removeElement($project)) {
-            $project->removeProfil($this);
-        }
+    // public function removeProject(Project $project): self
+    // {
+    //     if ($this->projects->removeElement($project)) {
+    //         $project->removeProfil($this);
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     /**
      * @return Collection<int, Formation>
@@ -295,6 +299,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if ($this->formations->removeElement($formation)) {
             $formation->removeUser($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, project>
+     */
+    public function getProject(): Collection
+    {
+        return $this->project;
+    }
+
+    public function addProject(project $project): self
+    {
+        if (!$this->project->contains($project)) {
+            $this->project->add($project);
+        }
+
+        return $this;
+    }
+
+    public function removeProject(project $project): self
+    {
+        $this->project->removeElement($project);
 
         return $this;
     }

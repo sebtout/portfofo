@@ -21,13 +21,21 @@ class Project
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $link = null;
 
-    #[ORM\ManyToMany(targetEntity: user::class, inversedBy: 'projects')]
-    private Collection $profil;
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'project')]
+    private Collection $users;
 
     public function __construct()
     {
-        $this->profil = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
+
+    // #[ORM\ManyToMany(targetEntity: user::class, inversedBy: 'projects')]
+    // private Collection $profil;
+
+    // public function __construct()
+    // {
+    //     $this->profil = new ArrayCollection();
+    // }
 
     public function getId(): ?int
     {
@@ -58,26 +66,53 @@ class Project
         return $this;
     }
 
+    // /**
+    //  * @return Collection<int, user>
+    //  */
+    // public function getProfil(): Collection
+    // {
+    //     return $this->profil;
+    // }
+
+    // public function addProfil(user $profil): self
+    // {
+    //     if (!$this->profil->contains($profil)) {
+    //         $this->profil->add($profil);
+    //     }
+
+    //     return $this;
+    // }
+
+    //     public function removeProfil(user $profil): self
+    //     {
+    //         $this->profil->removeElement($profil);
+
+    //         return $this;
+    //     }
+
     /**
-     * @return Collection<int, user>
+     * @return Collection<int, User>
      */
-    public function getProfil(): Collection
+    public function getUsers(): Collection
     {
-        return $this->profil;
+        return $this->users;
     }
 
-    public function addProfil(user $profil): self
+    public function addUser(User $user): self
     {
-        if (!$this->profil->contains($profil)) {
-            $this->profil->add($profil);
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addProject($this);
         }
 
         return $this;
     }
 
-    public function removeProfil(user $profil): self
+    public function removeUser(User $user): self
     {
-        $this->profil->removeElement($profil);
+        if ($this->users->removeElement($user)) {
+            $user->removeProject($this);
+        }
 
         return $this;
     }
