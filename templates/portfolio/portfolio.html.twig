@@ -3,7 +3,7 @@
 	<button class="btn btn-lg btn-primary">
 		<a href="{{ path('new') }}" class="text-white">Send new project</a>
 	</button>
-	{% for project in project %}
+	{% for project in projects %}
 		<h2>{{ project.nameproject }}</h2>
 		<p>{{ project.link }}</p>
 	{% endfor %}

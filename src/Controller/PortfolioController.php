@@ -23,15 +23,20 @@ class PortfolioController extends AbstractController
         ]);
     }
 
-    // #[Route('/game', name: 'app_game')]
-    // #[Route('/', name: 'app_home_game')]
-    #[Route('/portfolio', name: 'app_portfolio')]
-    public function show(projectRepository $projectRepository): Response
+    #[Route('/portfolio', name: 'app_portfolio', methods: ['GET', 'POST'])]
+    public function show(Request $request, projectRepository $projectRepository): Response
     {
-        $project = $projectRepository->findAll();
+        $projects = $projectRepository->findAll();
+        // $project = new Project();
+
+        // /** @var \App\Entity\User */
+        // $user = $this->getUser();
+        $form = $this->createForm(ProjectType::class);
+        $form->handleRequest($request);
 
         return $this->render('portfolio/newfolio.html.twig', [
-            'project' => $project,
+            'projects' => $projects,
+            'form' => $form->createView()
         ]);
     }
 
